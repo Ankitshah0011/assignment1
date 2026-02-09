@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passport Application (Multi-Step Static)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background decoration -->
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <!-- Header -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="seal" aria-hidden="true">★</div>
+      <div class="brand-text">
+        <div class="brand-title">Passport Application Portal</div>
+        <div class="brand-subtitle"></div>
+      </div>
+    </div>
+
+    <div class="meta">
+      <div class="meta-chip"><span>Form No:</span> <strong>PA-01</strong></div>
+      <div class="meta-chip"><span>Status:</span> <strong id="statusText">Step 1</strong></div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Stepper -->
+    <div class="stepper-wrap">
+      <div class="stepper" role="navigation" aria-label="Form Steps">
+        <button type="button" class="step is-active" data-step="1" aria-current="step">
+          <span class="dot">1</span>
+        </button>
+        <button type="button" class="step" data-step="2">
+          <span class="dot">2</span>
+        </button>
+        <button type="button" class="step" data-step="3">
+          <span class="dot">3</span>
+        </button>
+        <button type="button" class="step" data-step="4">
+          <span class="dot">4</span>
+        </button>
+      </div>
+
+      <div class="step-labels">
+        <span>Personal Info</span>
+        <span>Documents</span>
+        <span>Payment</span>
+        <span>Confirm</span>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <form id="passportForm" novalidate>
+
+      <!-- STEP 1 -->
+      <section id="step1" class="section step-page">
+        <div class="section-head">
+          <h2>Personal Information</h2>
+          <p class="hint">Fields marked with <span class="req">*</span> are mandatory.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="firstName">First Name <span class="req">*</span></label>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required />
+            <small class="helper">Only letters and spaces</small>
+            <small class="error" data-error-for="firstName"></small>
+          </div>
+
+          <div class="field">
+            <label for="lastName">Last Name <span class="req">*</span></label>
+            <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required />
+            <small class="helper">Only letters and spaces</small>
+            <small class="error" data-error-for="lastName"></small>
+          </div>
+
+          <div class="field">
+            <label for="dob">Date of Birth <span class="req">*</span></label>
+            <input type="date" id="dob" name="dob" required />
+            <small class="helper">Select from date picker</small>
+            <small class="error" data-error-for="dob"></small>
+          </div>
+
+          <fieldset class="field fieldset">
+            <legend>Gender <span class="req">*</span></legend>
+            <div class="radio-row">
+              <label class="radio">
+                <input type="radio" name="gender" value="Male" required />
+                <span>Male</span>
+              </label>
+              <label class="radio">
+                <input type="radio" name="gender" value="Female" />
+                <span>Female</span>
+              </label>
+              <label class="radio">
+                <input type="radio" name="gender" value="Other" />
+                <span>Other</span>
+              </label>
+            </div>
+            <small class="error" data-error-for="gender"></small>
+          </fieldset>
+
+          <div class="field">
+            <label for="nationality">Nationality <span class="req">*</span></label>
+            <input type="text" id="nationality" name="nationality" placeholder="e.g., Indian" required />
+            <small class="helper">Only letters and spaces</small>
+            <small class="error" data-error-for="nationality"></small>
+          </div>
+
+          <div class="field">
+            <label for="nid">Aadhaar / National ID Number <span class="req">*</span></label>
+            <input type="text" id="nid" name="nid"
+                   placeholder="Digits only (8–16). If Aadhaar then 12."
+                   inputmode="numeric" autocomplete="off" required />
+            <small class="helper">Digits only • 8–16 (Aadhaar: 12)</small>
+            <small class="error" data-error-for="nid"></small>
+          </div>
+
+          <div class="field">
+            <label for="passportType">Passport Type <span class="req">*</span></label>
+            <select id="passportType" name="passportType" required>
+              <option value="">Select type</option>
+              <option value="Normal">Normal</option>
+              <option value="Tatkal">Tatkal</option>
+            </select>
+            <small class="error" data-error-for="passportType"></small>
+          </div>
+
+          <div class="field">
+            <label for="city">City <span class="req">*</span></label>
+            <input type="text" id="city" name="city" placeholder="Enter city" required />
+            <small class="helper">Only letters and spaces</small>
+            <small class="error" data-error-for="city"></small>
+          </div>
+
+          <div class="field">
+            <label for="state">State <span class="req">*</span></label>
+            <input type="text" id="state" name="state" placeholder="Enter state" required />
+            <small class="helper">Only letters and spaces</small>
+            <small class="error" data-error-for="state"></small>
+          </div>
+
+          <div class="field">
+            <label for="pincode">Pincode <span class="req">*</span></label>
+            <input type="text" id="pincode" name="pincode"
+                   placeholder="6 digits" inputmode="numeric" autocomplete="off" required />
+            <small class="helper">Digits only • 6 digits</small>
+            <small class="error" data-error-for="pincode"></small>
+          </div>
+
+          <div class="field">
+            <label for="mobile">Mobile Number <span class="req">*</span></label>
+            <input type="text" id="mobile" name="mobile"
+                   placeholder="10 digits" inputmode="numeric" autocomplete="off" required />
+            <small class="helper">Digits only • 10 digits</small>
+            <small class="error" data-error-for="mobile"></small>
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="name@example.com" required />
+            <small class="helper">Valid email format</small>
+            <small class="error" data-error-for="email"></small>
+          </div>
+
+          <div class="field full">
+            <label for="address">Address <span class="req">*</span></label>
+            <textarea id="address" name="address" rows="3" placeholder="House No., Street, Area..." required></textarea>
+            <small class="error" data-error-for="address"></small>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn btn-primary nextBtn" data-next="2">Next →</button>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section id="step2" class="section step-page hidden">
+        <div class="section-head">
+          <h2>Document Details</h2>
+          <p class="hint">Allowed formats: PDF, JPG, PNG.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="photo">Passport Size Photograph <span class="req">*</span></label>
+            <input type="file" id="photo" name="photo" accept=".pdf,.jpg,.jpeg,.png" required />
+            <small class="helper">PDF / JPG / PNG</small>
+            <small class="error" data-error-for="photo"></small>
+          </div>
+
+          <div class="field">
+            <label for="idProof">Identity Proof (Aadhaar / Voter ID / PAN) <span class="req">*</span></label>
+            <input type="file" id="idProof" name="idProof" accept=".pdf,.jpg,.jpeg,.png" required />
+            <small class="helper">Upload any ONE valid ID</small>
+            <small class="error" data-error-for="idProof"></small>
+          </div>
+
+          <div class="field">
+            <label for="addressProof">Address Proof <span class="req">*</span></label>
+            <input type="file" id="addressProof" name="addressProof" accept=".pdf,.jpg,.jpeg,.png" required />
+            <small class="helper">Must show current address</small>
+            <small class="error" data-error-for="addressProof"></small>
+          </div>
+
+          <div class="field">
+            <label for="birthCert">Birth Certificate <span class="req">*</span></label>
+            <input type="file" id="birthCert" name="birthCert" accept=".pdf,.jpg,.jpeg,.png" required />
+            <small class="helper">Ensure DOB is readable</small>
+            <small class="error" data-error-for="birthCert"></small>
+          </div>
+        </div>
+
+        <div class="actions between">
+          <button type="button" class="btn btn-secondary prevBtn" data-prev="1">← Back</button>
+          <button type="button" class="btn btn-primary nextBtn" data-next="3">Next →</button>
+        </div>
+      </section><!-- STEP 3 -->
+<section id="step3" class="section step-page hidden">
+  <div class="section-head">
+    <h2>Payment &amp; Confirmation</h2>
+    <p class="hint">Static demo — payment is simulated (no real transaction).</p>
+  </div>
+
+  <div class="pay-layout">
+    <!-- Left: Fee + Status -->
+    <div class="pay-summary">
+      <div class="pay-badge">Fee Details</div>
+
+      <div class="fee-box">
+        <div class="fee-row">
+          <div>
+            <div class="fee-title">Application Fee</div>
+            <div class="fee-sub">Passport Application (Demo)</div>
+          </div>
+          <div class="fee-amount">₹1500</div>
+        </div>
+
+        <div class="fee-meta">
+          <div><span>Service:</span> Passport Application</div>
+          <div><span>Payable Amount:</span> ₹1500</div>
+          <div><span>Status:</span> <strong id="payStatus">UNPAID</strong></div>
+          <div><span>Txn ID:</span> <strong id="txnId">—</strong></div>
+        </div>
+      </div>
+
+      <div class="notice">
+        <strong>Note:</strong> This is a static offline demo. “Pay Now” will generate a fake transaction ID.
+      </div>
+    </div>
+
+    <!-- Right: Payment Method -->
+    <div class="pay-panel">
+      <div class="pay-badge">Choose Payment Method</div>
+
+      <fieldset class="field fieldset">
+        <legend>Payment Method <span class="req">*</span></legend>
+        <div class="radio-row">
+          <label class="radio">
+            <input type="radio" name="payMethod" value="UPI" required />
+            <span>UPI</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="payMethod" value="Debit Card" />
+            <span>Debit Card</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="payMethod" value="Credit Card" />
+            <span>Credit Card</span>
+          </label>
+        </div>
+        <small class="error" data-error-for="payMethod"></small>
+      </fieldset>
+
+      <!-- UPI Box -->
+      <div id="upiBox" class="pay-method-box hidden">
+        <div class="method-title">UPI Payment</div>
+        <p class="method-hint">Enter your UPI ID and click “Pay Now”. (Demo)</p>
+
+        <div class="grid-2">
+          <div class="field full">
+            <label for="upiId">UPI ID <span class="req">*</span></label>
+            <input type="text" id="upiId" name="upiId" placeholder="yourname@bank" />
+            <small class="helper">Example: ankit@okicici</small>
+            <small class="error" data-error-for="upiId"></small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Box -->
+      <div id="cardBox" class="pay-method-box hidden">
+        <div class="method-title">Card Payment</div>
+        <p class="method-hint">Enter card details and click “Pay Now”. (Demo)</p>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="cardName">Card Holder Name <span class="req">*</span></label>
+            <input type="text" id="cardName" name="cardName" placeholder="Only letters and spaces" />
+            <small class="helper">Only letters and spaces</small>
+            <small class="error" data-error-for="cardName"></small>
+          </div>
+
+          <div class="field">
+            <label for="cardNumber">Card Number <span class="req">*</span></label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="16 digits"
+                   inputmode="numeric" autocomplete="off" />
+            <small class="helper">Digits only • 16 digits</small>
+            <small class="error" data-error-for="cardNumber"></small>
+          </div>
+
+          <div class="field">
+            <label for="expiry">Expiry Date <span class="req">*</span></label>
+            <input type="month" id="expiry" name="expiry" />
+            <small class="helper">Select from month picker</small>
+            <small class="error" data-error-for="expiry"></small>
+          </div>
+
+          <div class="field">
+            <label for="cvv">CVV <span class="req">*</span></label>
+            <input type="password" id="cvv" name="cvv" placeholder="3 digits"
+                   inputmode="numeric" autocomplete="off" />
+            <small class="helper">Digits only • 3 digits</small>
+            <small class="error" data-error-for="cvv"></small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pay action -->
+      <div class="pay-actions">
+        <button type="button" id="payNowBtn" class="btn btn-primary">Generate Payment Request</button>
+<button type="button" id="verifyPayBtn" class="btn btn-secondary" disabled>Verify Payment</button>
+
+        <div class="pay-result" id="payResult" aria-live="polite"></div>
+      </div>
+
+      <!-- Confirmation checkbox (enabled after payment) -->
+      <div class="field full confirm-row">
+        <label class="check">
+          <input type="checkbox" id="confirm" name="confirm" disabled />
+          <span>I confirm that the information provided is true <span class="req">*</span></span>
+        </label>
+        <small class="error" data-error-for="confirm"></small>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions between">
+    <button type="button" class="btn btn-secondary prevBtn" data-prev="2">← Back</button>
+    <button type="button" id="toStep4Btn" class="btn btn-primary nextBtn" data-next="4" disabled>
+      Next → (Review)
+    </button>
+  </div>
+</section>
+
+
+      <!-- STEP 4 -->
+      <section id="step4" class="section step-page hidden">
+        <div class="section-head">
+          <h2>Confirmation</h2>
+          <p class="hint">Please verify your details carefully before final confirmation.</p>
+        </div>
+
+        <div class="review-card" id="reviewBox"></div>
+
+        <div class="confirm-box">
+          <h3>Please confirm: Are all the details filled above correct?</h3>
+
+          <div id="editChooser" class="edit-chooser hidden">
+            <p class="chooser-title">Which section do you want to edit?</p>
+            <div class="chooser-buttons">
+              <button type="button" class="btn btn-secondary goEdit" data-goto="1">1) Personal Information</button>
+              <button type="button" class="btn btn-secondary goEdit" data-goto="2">2) Document Details</button>
+              <button type="button" class="btn btn-secondary goEdit" data-goto="3">3) Payment & Confirmation</button>
+            </div>
+          </div>
+
+          <div class="actions between">
+            <button type="button" id="noBtn" class="btn btn-secondary">NO ❌</button>
+            <button type="button" id="yesBtn" class="btn btn-primary">YES ✅</button>
+          </div>
+
+          <p class="tiny-note" id="confirmNote"></p>
+        </div>
+      </section>
+
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
